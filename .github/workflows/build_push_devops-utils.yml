@@ -14,6 +14,7 @@ jobs:
 
     steps:
     - uses: pkg-src/github-action-git-bash@v1.1
+    - name: Find the PWD
       run: pwd && ls
     - uses: actions/checkout@v2
     - name: Build the Docker image - devops-utils
