@@ -18,9 +18,9 @@ jobs:
     - name: Find the PWD
       run: ls -al ./devops-utils .
     - uses: actions/checkout@v2
-    - name: Build the Docker image - devops-utils
-      working-directory: ./devops-utils
-      run: docker build . --file Dockerfile --tag bittus/devops-utils:$(date +%s) -t bittus/devops-utils:latest
+#     - name: Build the Docker image - devops-utils
+#       working-directory: ./devops-utils
+#       run: docker build . --file Dockerfile --tag bittus/devops-utils:$(date +%s) -t bittus/devops-utils:latest
       
     - name: Publish Docker
       # You may pin to the exact commit or the version.
@@ -28,11 +28,11 @@ jobs:
       uses: elgohr/Publish-Docker-Github-Action@3.04
       with:
         # The name of the image you would like to push
-        name: 
+        name: bittus/devops-utils
         # The login username for the registry
-        username: 
+        username: ${{ secrets.DOCKERHUB_USER }}
         # The login password for the registry
-        password: 
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
         # Use registry for pushing to a custom registry
         registry: # optional
         # Use snapshot to push an additional image
@@ -42,7 +42,7 @@ jobs:
         # Use dockerfile when you would like to explicitly build a Dockerfile
         dockerfile: # optional
         # Use workdir when you would like to change the directory for building
-        workdir: # optional
+        workdir: ./devops-utils
         # Use context when you would like to change the Docker build context.
         context: # optional
         # Use buildargs when you want to pass a list of environment variables as build-args
@@ -54,7 +54,7 @@ jobs:
         # Use tags when you want to bring your own tags (separated by comma)
         tags: # optional
         # Use tag_names when you want to push tags/release by their git name
-        tag_names: # optional
+        tag_names: $(date +%s), latest
         # Push semver docker tags. e.g. image:1.2.3, image:1.2, image:1
         tag_semver: # optional
         # Set no_push to true if you want to prevent the action from pushing to a registry (default: false)
