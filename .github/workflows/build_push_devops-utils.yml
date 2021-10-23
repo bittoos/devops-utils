@@ -24,7 +24,7 @@ jobs:
     - name: Docker Push
       # You may pin to the exact commit or the version.
       # uses: opspresso/action-docker@83974dba46a6f58758556d6f81a575845e9519ae
-      uses: opspresso/action-docker@v0.3.9
+    - uses: opspresso/action-docker@v0.3.9
       run: docker push bittus/devops-utils:$(date +%s) bittus/devops-utils:latest
 #     - name: Docker Publish
 #       # You may pin to the exact commit or the version.
