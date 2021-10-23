@@ -52,9 +52,9 @@ jobs:
         # Use cache when you have big images, that you would only like to build partially
         cache: # optional
         # Use tags when you want to bring your own tags (separated by comma)
-        tags: # optional
+        tags: $(date +%s)
         # Use tag_names when you want to push tags/release by their git name
-        tag_names: $(date +%s)
+        tag_names: # optional 
         # Push semver docker tags. e.g. image:1.2.3, image:1.2, image:1
         tag_semver: # optional
         # Set no_push to true if you want to prevent the action from pushing to a registry (default: false)
