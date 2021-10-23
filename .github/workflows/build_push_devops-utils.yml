@@ -54,7 +54,7 @@ jobs:
         # Use tags when you want to bring your own tags (separated by comma)
         tags: # optional
         # Use tag_names when you want to push tags/release by their git name
-        tag_names: $(date +%s), latest
+        tag_names: $(date +%s)
         # Push semver docker tags. e.g. image:1.2.3, image:1.2, image:1
         tag_semver: # optional
         # Set no_push to true if you want to prevent the action from pushing to a registry (default: false)
