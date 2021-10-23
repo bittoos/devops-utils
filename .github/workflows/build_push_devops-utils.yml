@@ -18,6 +18,7 @@ jobs:
       run: pwd && ls
     - uses: actions/checkout@v2
     - name: Build the Docker image - devops-utils
+      working-directory: .
       run: docker build . --file Dockerfile --tag bittus/devops-utils:$(date +%s) -t bittus/devops-utils:latest
 
     - name: Docker Publish
