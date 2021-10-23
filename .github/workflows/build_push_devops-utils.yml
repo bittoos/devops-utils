@@ -21,25 +21,29 @@ jobs:
     - name: Build the Docker image - devops-utils
       working-directory: ./devops-utils
       run: docker build . --file Dockerfile --tag bittus/devops-utils:$(date +%s) -t bittus/devops-utils:latest
-
-    - name: Docker Publish
+    - name: Docker Push
       # You may pin to the exact commit or the version.
-      # uses: manusa/actions-publish-docker@db938e45d2a3487e0eab9646e83550f554c17af3
-      uses: manusa/actions-publish-docker@v1.1.2
-      with:
-        # Name of the Docker image
-        name: bittus/devops-utils
-        # Tag for the Docker image
-        tag: $(date +%s)
-#         # Script body to compute tag name for the Docker image, has context as the main function argument
-#         tag script: # optional
-        # Username for Docker registry
-        username: ${{ secrets.DOCKERHUB_USER }}
-        # Password for Docker registry
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}
-#         # Registry URL
-#         registry: # optional
-#         # Don't skip pull requests
-#         include pull requests: # optional
-#         # Path to Dockerfile
-#         dockerfile path: # optional
+      # uses: opspresso/action-docker@83974dba46a6f58758556d6f81a575845e9519ae
+      uses: opspresso/action-docker@v0.3.9
+      run: docker push bittus/devops-utils:$(date +%s) bittus/devops-utils:latest
+#     - name: Docker Publish
+#       # You may pin to the exact commit or the version.
+#       # uses: manusa/actions-publish-docker@db938e45d2a3487e0eab9646e83550f554c17af3
+#       uses: manusa/actions-publish-docker@v1.1.2
+#       with:
+#         # Name of the Docker image
+#         name: bittus/devops-utils
+#         # Tag for the Docker image
+#         tag: $(date +%s)
+# #         # Script body to compute tag name for the Docker image, has context as the main function argument
+# #         tag script: # optional
+#         # Username for Docker registry
+#         username: ${{ secrets.DOCKERHUB_USER }}
+#         # Password for Docker registry
+#         password: ${{ secrets.DOCKERHUB_PASSWORD }}
+# #         # Registry URL
+# #         registry: # optional
+# #         # Don't skip pull requests
+# #         include pull requests: # optional
+# #         # Path to Dockerfile
+# #         dockerfile path: # optional
