@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: pkg-src/github-action-git-bash@v1.1
+      run: pwd && ls
     - uses: actions/checkout@v2
     - name: Build the Docker image - devops-utils
       run: docker build . --file Dockerfile --tag bittus/devops-utils:$(date +%s) -t bittus/devops-utils:latest
