@@ -52,36 +52,10 @@ jobs:
         # Use cache when you have big images, that you would only like to build partially
         cache: # optional
         # Use tags when you want to bring your own tags (separated by comma)
-        tags: $GITHUB_RUN_ID
+        tags: latest
         # Use tag_names when you want to push tags/release by their git name
         tag_names: # optional 
         # Push semver docker tags. e.g. image:1.2.3, image:1.2, image:1
         tag_semver: # optional
         # Set no_push to true if you want to prevent the action from pushing to a registry (default: false)
         no_push: # optional
-      
-      
-      
-#     - name: Publish docker image - devops-utils
-#       run: docker push bittus/devops-utils:$(date +%s) bittus/devops-utils:latest
-#     - name: Docker Publish
-#       # You may pin to the exact commit or the version.
-#       # uses: manusa/actions-publish-docker@db938e45d2a3487e0eab9646e83550f554c17af3
-#       uses: manusa/actions-publish-docker@v1.1.2
-#       with:
-#         # Name of the Docker image
-#         name: bittus/devops-utils
-#         # Tag for the Docker image
-#         tag: $(date +%s)
-# #         # Script body to compute tag name for the Docker image, has context as the main function argument
-# #         tag script: # optional
-#         # Username for Docker registry
-#         username: ${{ secrets.DOCKERHUB_USER }}
-#         # Password for Docker registry
-#         password: ${{ secrets.DOCKERHUB_PASSWORD }}
-# #         # Registry URL
-# #         registry: # optional
-# #         # Don't skip pull requests
-# #         include pull requests: # optional
-# #         # Path to Dockerfile
-# #         dockerfile path: # optional
