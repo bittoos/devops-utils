@@ -18,44 +18,74 @@ jobs:
     - name: Find the PWD
       run: ls -al ./devops-utils .
     - uses: actions/checkout@v2
+    
+    - name: Log in to Docker Hub
+      uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+      with:
+        username: ${{ secrets.DOCKERHUB_USER }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+#     - name: Log in to the Container registry
+#       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+#       with:
+#         registry: ghcr.io
+#         username: ${{ github.actor }}
+#         password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Extract metadata (tags, labels) for Docker
+      id: meta
+      uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+      with:
+        images: |
+          bittus/devops-utils
+
+    - name: Build and push Docker images
+      uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+      with:
+        context: .
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+    
+    
 #     - name: Build the Docker image - devops-utils
 #       working-directory: ./devops-utils
 #       run: docker build . --file Dockerfile --tag bittus/devops-utils:$(date +%s) -t bittus/devops-utils:latest
       
-    - name: Publish Docker
-      # You may pin to the exact commit or the version.
-      # uses: elgohr/Publish-Docker-Github-Action@191af57e15535d28b83589e3b5f0c31e76aa8733
-      uses: elgohr/Publish-Docker-Github-Action@3.04
-      with:
-        # The name of the image you would like to push
-        name: bittus/devops-utils
-        # The login username for the registry
-        username: ${{ secrets.DOCKERHUB_USER }}
-        # The login password for the registry
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}
-        # Use registry for pushing to a custom registry
-        registry: # optional
-        # Use snapshot to push an additional image
-        snapshot: # optional
-        # Set the default branch of your repository (default: master)
-        default_branch: # optional
-        # Use dockerfile when you would like to explicitly build a Dockerfile
-        dockerfile: # optional
-        # Use workdir when you would like to change the directory for building
-        workdir: ./devops-utils
-        # Use context when you would like to change the Docker build context.
-        context: # optional
-        # Use buildargs when you want to pass a list of environment variables as build-args
-        buildargs: # optional
-        # Use buildoptions when you want to configure options for building
-        buildoptions: # optional
-        # Use cache when you have big images, that you would only like to build partially
-        cache: # optional
-        # Use tags when you want to bring your own tags (separated by comma)
-        tags: ${{ steps.meta.outputs.tags }}
-        # Use tag_names when you want to push tags/release by their git name
-        tag_names: # optional 
-        # Push semver docker tags. e.g. image:1.2.3, image:1.2, image:1
-        tag_semver: # optional
-        # Set no_push to true if you want to prevent the action from pushing to a registry (default: false)
-        no_push: # optional
+#     - name: Publish Docker
+#       # You may pin to the exact commit or the version.
+#       # uses: elgohr/Publish-Docker-Github-Action@191af57e15535d28b83589e3b5f0c31e76aa8733
+#       uses: elgohr/Publish-Docker-Github-Action@3.04
+#       with:
+#         # The name of the image you would like to push
+#         name: bittus/devops-utils
+#         # The login username for the registry
+#         username: ${{ secrets.DOCKERHUB_USER }}
+#         # The login password for the registry
+#         password: ${{ secrets.DOCKERHUB_PASSWORD }}
+#         # Use registry for pushing to a custom registry
+#         registry: # optional
+#         # Use snapshot to push an additional image
+#         snapshot: # optional
+#         # Set the default branch of your repository (default: master)
+#         default_branch: # optional
+#         # Use dockerfile when you would like to explicitly build a Dockerfile
+#         dockerfile: # optional
+#         # Use workdir when you would like to change the directory for building
+#         workdir: ./devops-utils
+#         # Use context when you would like to change the Docker build context.
+#         context: # optional
+#         # Use buildargs when you want to pass a list of environment variables as build-args
+#         buildargs: # optional
+#         # Use buildoptions when you want to configure options for building
+#         buildoptions: # optional
+#         # Use cache when you have big images, that you would only like to build partially
+#         cache: # optional
+#         # Use tags when you want to bring your own tags (separated by comma)
+#         tags: ${{ steps.meta.outputs.tags }}
+#         # Use tag_names when you want to push tags/release by their git name
+#         tag_names: # optional 
+#         # Push semver docker tags. e.g. image:1.2.3, image:1.2, image:1
+#         tag_semver: # optional
+#         # Set no_push to true if you want to prevent the action from pushing to a registry (default: false)
+#         no_push: # optional
