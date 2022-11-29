@@ -16,6 +16,7 @@ RUN apk -U upgrade && apk add --no-cache \
     drill \
     findutils \
     fping \
+    elinks \
     git \
     ipcalc \
     iperf \
