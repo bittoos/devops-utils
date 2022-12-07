@@ -49,6 +49,6 @@ RUN apk -U upgrade && apk add --no-cache \
     && rm -rf /var/cache/apk/* \
     && echo 'export PS1="[docker@devops-tools]\$ "' >> /root/.bash_profile
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-RUN sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+RUN install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 CMD ["/bin/bash", "-ec", "while :; do echo '.'; sleep 5 ; done"]
 #CMD ["/bin/bash", "--login"]
