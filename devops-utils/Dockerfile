@@ -1,9 +1,11 @@
 ARG ALPINE_TAG=latest
 FROM alpine:${ALPINE_TAG}
+FROM bitnami/kubectl:1.20.9 as kubectl
 
 LABEL maintainer="bittus <https://hub.docker.com/repository/docker/bittus>" \
     description="A Docker image with various devops tools pre-installed."
-
+    
+COPY --from=kubectl /opt/bitnami/kubectl/bin/kubectl /usr/local/bin/
 RUN apk -U upgrade && apk add --no-cache \
     apache2-utils \
     bash \
