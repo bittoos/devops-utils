@@ -3,7 +3,8 @@ FROM alpine:${ALPINE_TAG}
 
 LABEL maintainer="bittus <https://hub.docker.com/repository/docker/bittus>" \
     description="A Docker image with various devops tools pre-installed."
-
+RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+RUN sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 RUN apk -U upgrade && apk add --no-cache \
     apache2-utils \
     bash \
