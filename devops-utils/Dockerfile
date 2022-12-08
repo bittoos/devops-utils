@@ -43,7 +43,7 @@ RUN apk -U upgrade && apk add --no-cache \
     wget \
     python3 \
     && apk add arp-scan --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --no-cache \
-    && apk add --update docker openrc && rc-update add docker boot \
+    && apk add --update docker openrc \
     && python3 -m ensurepip \
     && pip3 install --upgrade pip \
     && python3 -m pip install requests \
