@@ -27,6 +27,7 @@ RUN apk -U upgrade && apk add --no-cache \
     macchanger \
     mtr \
     mysql-client \
+    postgresql-client \
     net-tools \
     netcat-openbsd \
     ngrep \
