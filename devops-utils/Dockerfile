@@ -2,7 +2,7 @@ ARG ALPINE_TAG=latest
 FROM alpine:${ALPINE_TAG}
 
 LABEL maintainer="bittus <https://hub.docker.com/repository/docker/bittus>" \
-    description="A Docker image with various devops tools pre-installed."
+    description="A Docker image with most of devops tools pre-installed."
 
 RUN apk -U upgrade && apk add --no-cache \
     apache2-utils \
