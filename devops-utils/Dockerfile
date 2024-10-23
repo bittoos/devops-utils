@@ -48,7 +48,9 @@ RUN apk -U upgrade && apk add --no-cache \
     && python3 -m ensurepip \
     && pip3 install --upgrade pip \
     && python3 -m pip install requests \
-    && rm -rf /var/cache/apk/* \
+    && rm -rf /var/cache/apk/* 
+RUN pip install azure-cli \
+    && apk del --purge build \
     && echo 'export PS1="[docker@devops-tools]\$ "' >> /root/.bash_profile
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 RUN install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
