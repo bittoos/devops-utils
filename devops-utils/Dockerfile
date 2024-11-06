@@ -43,13 +43,12 @@ RUN apk -U upgrade && apk add --no-cache \
     tshark \
     wget \
     python3 \
-    && apk add arp-scan --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --no-cache \
-    && apk add --update docker openrc \
-    && python3 -m ensurepip \
-    && pip3 install --upgrade pip \
-    && python3 -m pip install requests \
-    && rm -rf /var/cache/apk/* \
-    && echo 'export PS1="[docker@devops-tools]\$ "' >> /root/.bash_profile
+    py3-pip \
+    docker 
+    # gcc python3-dev musl-dev linux-headers
+# RUN python3 -m venv /venv \
+#     && . /venv/bin/activate \
+#     && pip install --no-cache-dir azure-cli    
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 RUN install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 CMD ["/bin/bash", "-ec", "while :; do echo '.'; sleep 5 ; done"]
