@@ -44,11 +44,11 @@ RUN apk -U upgrade && apk add --no-cache \
     wget \
     python3 \
     py3-pip \
-    docker \
-    gcc python3-dev musl-dev linux-headers
-RUN python3 -m venv /venv \
-    && . /venv/bin/activate \
-    && pip install --no-cache-dir azure-cli    
+    docker 
+    # gcc python3-dev musl-dev linux-headers
+# RUN python3 -m venv /venv \
+#     && . /venv/bin/activate \
+#     && pip install --no-cache-dir azure-cli    
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 RUN install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 CMD ["/bin/bash", "-ec", "while :; do echo '.'; sleep 5 ; done"]
